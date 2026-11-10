@@ -7,7 +7,7 @@
   <title>なるき</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;700;800&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css?v=2">
 </head>
 <body>
   <main id="app"></main>
@@ -92,6 +92,7 @@
             <div class="board">${cards}</div>
             <p class="game-msg" aria-live="polite"></p>
             <p class="game-tip">2枚ずつめくって、同じ絵をさがしてね</p>
+            <button class="skip-btn" type="button">スキップして手紙をひらく</button>
           </div>
         </section>`, "is-cover");
 
@@ -99,6 +100,7 @@
       const pairsEl = app.querySelector(".pairs");
       const turnsEl = app.querySelector(".turns");
       const msg = app.querySelector(".game-msg");
+      app.querySelector(".skip-btn").addEventListener("click", renderOpening);
       let open = [], pairs = 0, turns = 0, busy = false;
 
       function bump(el, n) {
@@ -126,7 +128,7 @@
           if (pairs === g.cards.length) {
             msg.className = "game-msg big";
             msg.textContent = "CLEAR!";
-            setTimeout(renderOpening, 1400);
+            setTimeout(() => { if (msg.isConnected) renderOpening(); }, 1400); // スキップ済みなら二重にひらかない
           }
         } else {
           busy = true;
