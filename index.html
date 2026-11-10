@@ -7,12 +7,12 @@
   <title>なるき</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;700;800&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css?v=2">
+  <link rel="stylesheet" href="style.css?v=3">
 </head>
 <body>
   <main id="app"></main>
 
-  <script src="messages.js"></script>
+  <script src="messages.js?v=2"></script>
   <script>
     const app = document.getElementById("app");
     const root = document.documentElement;
@@ -83,7 +83,10 @@
       show(`
         <section class="screen cover">
           <div class="game-card">
-            <p class="game-head">GAME</p>
+            <div class="game-top">
+              <p class="game-head">GAME</p>
+              <button class="skip-btn" type="button">スキップして手紙をひらく</button>
+            </div>
             <p class="game-title">${esc(g.title)}</p>
             <p class="game-hud">
               <span>そろった <b class="pairs">0</b> / ${g.cards.length}</span>
@@ -92,7 +95,6 @@
             <div class="board">${cards}</div>
             <p class="game-msg" aria-live="polite"></p>
             <p class="game-tip">2枚ずつめくって、同じ絵をさがしてね</p>
-            <button class="skip-btn" type="button">スキップして手紙をひらく</button>
           </div>
         </section>`, "is-cover");
 
